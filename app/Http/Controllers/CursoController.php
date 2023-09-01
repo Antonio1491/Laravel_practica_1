@@ -33,10 +33,17 @@ class CursoController extends Controller
         return redirect()->route('cursos.show', $curso->id);
     }
 
-    public function show($id){
+    public function show(Curso $curso){
 
-        $curso = Curso::find($id);
+        // $curso = Curso::find($id);
 
         return view('cursos.show', compact('curso'));
+    }
+
+    public function edit(Curso $curso)
+    {
+        // $curso = Curso::find($id);
+
+        return view('cursos.edit', compact('curso'));
     }
 }
