@@ -5,8 +5,9 @@
 @section('content')
   <h1>En esta página podrás editar un curso</h1>
 
-  <form action="{{route('cursos.store')}}" method="POST">
+  <form action="{{route('cursos.update', $curso)}}" method="POST">
     @csrf
+    @method('put')
     <label>
       Nombre:<br>
       <input type="text" name="name" value="{{$curso->name}}">
