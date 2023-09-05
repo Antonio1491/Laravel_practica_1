@@ -26,15 +26,29 @@ class CursoController extends Controller
     //validamos en el Store curso
     public function store(StoreCurso $request){
 
-        $curso = new Curso();
+        // $curso = new Curso();
 
-        $curso->name = $request->name;
-        $curso->descripcion = $request->descripcion;
-        $curso->categoria = $request->categoria;
+        // $curso->name = $request->name;
+        // $curso->descripcion = $request->descripcion;
+        // $curso->categoria = $request->categoria;
 
-        $curso->save();
+        // $curso->save();
 
-        return redirect()->route('cursos.show', $curso->id);
+        // return redirect()->route('cursos.show', $curso->id);
+    
+
+        //En caso de tener demasiadas propiedades o campos para guardar
+        //Crea un objeto cursos y lo guarda en la bds 
+        // $curso = Curso::create([
+        //     'name' => $request->name,
+        //     'descripcion' => $request->descripcion ,
+        //     'categoria' => $request->categoria
+        // ]);
+
+        $curso = Curso::create($request->all());
+
+        return redirect()->route('cursos.show', $curso);
+
     }
 
     public function show(Curso $curso){
@@ -60,11 +74,14 @@ class CursoController extends Controller
             'categoria' => 'required'
         ]);
         
-        $curso->name = $request->name;
-        $curso->descripcion = $request->descripcion;
-        $curso->categoria = $request->categoria;
+        // $curso->name = $request->name;
+        // $curso->descripcion = $request->descripcion;
+        // $curso->categoria = $request->categoria;
 
-        $curso->save();
+        // $curso->save();
+
+        //actualización masiva
+        $curso->update($request->all());
 
         return redirect()->route('cursos.show', $curso->id);
 
