@@ -7,14 +7,22 @@
 
   <!-- favicon -->
   <!-- estilos -->
+  <style>
+    .active{
+      color: red;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <!-- header -->
   <!-- nav -->
-  <h1>@yield('content')</h1>
+  @include('layouts.partials.header')
+
+  @yield('content')
 
   <!-- footer -->
-
+  @include('layouts.partials.footer')
   <!-- script -->
 </body>
 </html>

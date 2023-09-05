@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
+
+use App\Mail\ContactanosMailable;
+use Illuminate\Support\Facades\Mail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +18,7 @@ use App\Http\Controllers\CursoController;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 // Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
 
@@ -31,6 +35,15 @@ Route::get('/', HomeController::class);
 // Route::delete('cursos/{curso}', [CursoController::class, 'destroy'])->name('cursos.destroy');
 
 Route::resource('cursos', CursoController::class);
+
+Route::view('nosotros', 'nosotros')->name('nosotros'); //contenido estático
+
+Route::get('contactanos', function () {
+  $correo = new ContactanosMailable;
+  Mail::to('antonio.gongora1491@gmail.com')->send($correo);
+
+  return "mensaje enviado";
+});
 
 // Rutas en grupo
 // Route::controller(CursoController::class)->group(function(){
