@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Curso;
 use Illuminate\Http\Request;
+
+use App\Http\Requests\StoreCurso;
 
 class CursoController extends Controller
 {
@@ -20,15 +23,8 @@ class CursoController extends Controller
 
     }
 
-    public function store(Request $request){
-
-        //Validación 
-        $request->validate([
-            'name' => 'required',
-            'descripcion' => 'required',
-            'categoria' => 'required'
-        ]);
-
+    //validamos en el Store curso
+    public function store(StoreCurso $request){
 
         $curso = new Curso();
 
