@@ -1,11 +1,9 @@
 <?php
 
+use App\Http\Controllers\ContactanosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
-
-use App\Mail\ContactanosMailable;
-use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,12 +36,9 @@ Route::resource('cursos', CursoController::class);
 
 Route::view('nosotros', 'nosotros')->name('nosotros'); //contenido estático
 
-Route::get('contactanos', function () {
-  $correo = new ContactanosMailable;
-  Mail::to('antonio.gongora1491@gmail.com')->send($correo);
+Route::get('contactanos', [ContactanosController::class, 'index'])->name('contactanos.index');
 
-  return "mensaje enviado";
-});
+Route::post('contactanos', [ContactanosController::class, 'store'])->name('contactanos.store');
 
 // Rutas en grupo
 // Route::controller(CursoController::class)->group(function(){
