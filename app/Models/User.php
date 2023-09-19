@@ -54,4 +54,10 @@ class User extends Authenticatable
             set: fn($value) => strtolower($value)
         );
     }
+
+    //acceder al perfil del usuario - Relación uno a uno
+    public function profile()
+    {
+        return $this->hasOne('App\Models\Profile');
+    }
 }
