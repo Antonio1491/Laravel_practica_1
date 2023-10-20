@@ -55,9 +55,38 @@ class User extends Authenticatable
         );
     }
 
-    //acceder al perfil del usuario - Relación uno a uno
+    //Relación uno a uno - acceder al perfil del usuario - 
     public function profile()
     {
         return $this->hasOne('App\Models\Profile');
     }
+
+    //Relación uno a muchos
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
+
+    public function videos()
+    {
+        return $this->hasMany('App\Models\Video');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
+    //Relación muchos a muchos
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+    //Relación uno a uno polimorfica
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
 }
+

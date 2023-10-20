@@ -10,6 +10,7 @@ class Profile extends Model
     use HasFactory;
 
 
+    //recuperamos el perfil y queremos obtener los datos del usuario
     public function user()
     {
         return $this->belongsTo('App\Models\User');
